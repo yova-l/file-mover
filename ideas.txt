@@ -2,6 +2,17 @@
 * Una funcion para combinarlos con un formato pre y post ej ___<nombre>.jpg
 * Traer a donde quieras 
 
+"""
+La idea es tener uno ya hizo una seleccion de material en la carpeta "X". 
+Ahora quiero seleccionar todos los archivos y poder moverlos de diferentes maneras:
+    * Los JPGS se mueven juntos
+    * Los Raws se mueven juntos
+    * Opcion1: mover los raws a destino con carpeta
+    * Opcion2: copiar los raws a destino con carpeta
+
+
+"""
+
 Class RawMover:
     -jpg_path string
     -raw_path string
