@@ -2,15 +2,51 @@ import os
 import shutil
 import filecmp
 
-or_path = "/home/giovanni/Desktop/github-repos/file-mover/origin/"
-des_path = "/home/giovanni/Desktop/github-repos/file-mover/dest/"
-RAW_FOLDER_NAME = "raws"
+jpgs_path = "/home/giovanni/Desktop/github-repos/file-mover/jpgs/"
+raws_path = "/home/giovanni/Desktop/github-repos/file-mover/raws/"
+raw_folder_name = "MyRaws"
 
 class FileMover():
     def __init__(self):
         self._jpgsPath = None
         self._rawsPath = None
         self._wantsFolder = False
+        self._finalFolderName = ""
+        self._rawEnding = ".dng"
+        self._jpgEnding = ""
+
+    def _getJpgsNames(path):
+        jpgFileNames = set(
+            filter(lambda x: ".jpg" in x, os.listdir(path))
+        )
+        return jpgFileNames
+
+    def _extractJpgName(fullPath):
+        name = ""
+        fullPath = fullPath[:-4] # .jpg out
+        for i in range(len(fullPath)-1, -1, -1):
+            c = fullPath[i]
+            if c == "/": break
+            name += c
+        return reversed(name)
+        
+    def _getRawPaths(self, path, jpgsSet):
+        # Now gotta grab from / (...) .jpg
+        # And compose path + (...) + .dng/raw/etc
+
+        rawsPaths = []
+
+        for jpgPath in jpgsSet:
+            jpgName = self._extractJpgName(jpgPath)
+            rawPath = path + jpgName + self._rawEnding
+            raws_path.append(rawPath)
+
+        return raws_path
+
+
+
+    def setFolderName(self, name):
+        self._finalFolderName = name
     
     def setJpgsPath(self, path):
         self._jpgsPath = path
@@ -30,17 +66,8 @@ class FileMover():
     def dontWantFolder(self):
         self._wantsFolder = False
     
-    def _getJpgsNames(path):
-        jpgFileNames = set(
-            filter(lambda x: ".jpg" in x, os.listdir(path))
-        )
-
-
-    def _getRawPaths(path, jpgsSet):
-        pass
-
-    def copyRaws(self):
-        pass
+    # def copyRaws(self):
+    #     pass
 
     def moveRaws(self):
         jpgsSet = self._getJpgsNames(self._jpgsPath)
@@ -48,7 +75,7 @@ class FileMover():
         finalPath = self._jpgsPath
 
         if self.wantFolder:
-            finalPath = os.path.join(finalPath, RAW_FOLDER_NAME)
+            finalPath = os.path.join(finalPath, self._finalFolderName)
             if not os.path.exists(finalPath):
                 os.mkdir(finalPath)
 
@@ -71,9 +98,9 @@ class FileMover():
 
     
 mfm = FileMover()
-mfm.setOr(or_path)
-mfm.setDest(des_path)
+mfm.setJpgsPath(jpgs_path)
+mfm.setRawsPath(raws_path)
+mfm.wantFolder()
+mfm.setFolderName(raw_folder_name)
+mfm.moveRaws()
 
-# TEST
-print(f"Files in origin: { os.listdir(mfm.getOr()) }")
-print(f"Files in dest: { os.listdir(mfm.getDest()) }")
