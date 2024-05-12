@@ -40,8 +40,16 @@ class FileMover():
 
         return rawsPaths
 
+    def _getDestRawPath(self, oriRawPath, finalDirectoryPath):
+        fileName = ""
 
-
+        for i in range(len(oriRawPath) - 1, -1, -1):
+            c = oriRawPath[i]
+            if c == "/": break
+            fileName += c
+    
+        return finalDirectoryPath + "/" + fileName[::-1]
+            
     def setFolderName(self, name):
         self._finalFolderName = name
     
@@ -68,7 +76,7 @@ class FileMover():
 
     def moveRaws(self):
         jpgsSet = self._getJpgsNames(self._jpgsPath)
-        rawsPathList = self._getRawPaths(self._rawsPath, jpgsSet)
+        oriRawsPathList = self._getRawPaths(self._rawsPath, jpgsSet)
         finalPath = self._jpgsPath
 
         if self.wantFolder:
@@ -76,20 +84,19 @@ class FileMover():
             if not os.path.exists(finalPath):
                 os.mkdir(finalPath)
 
-        for rawImgPath in rawsPathList:
-            shutil.copy2(rawImgPath, finalPath)
+        for oriRawImgPath in oriRawsPathList:
+            shutil.copy2(oriRawImgPath, finalPath)
             safe_counter = 0
-            new_raw_img_path = #DONT HAVE IT
-            ############## REHINKIT AGAIN
+            destRawImgpath = self._getDestRawPath(oriRawImgPath, finalPath)
 
-            while not filecmp.cmp(rawImgPath, finalPath):
+            while not filecmp.cmp(oriRawImgPath, destRawImgpath):
                 if os.path.exists(finalPath):
                     os.remove(finalPath)
-                shutil.copy2(rawImgPath, finalPath)
+                shutil.copy2(oriRawImgPath, finalPath)
                 safe_counter += 1
                 if safe_counter == 20: 
                     raise IOError
             
             # It's checked that the files are the same, delete the original
-            os.remove(rawImgPath)
+            os.remove(oriRawImgPath)
         
