@@ -79,7 +79,7 @@ class FileMover():
         oriRawsPathList = self._getRawPaths(self._rawsPath, jpgsSet)
         finalPath = self._jpgsPath
 
-        if self.wantFolder:
+        if self._wantsFolder:
             finalPath = os.path.join(finalPath, self._finalFolderName)
             if not os.path.exists(finalPath):
                 os.mkdir(finalPath)
