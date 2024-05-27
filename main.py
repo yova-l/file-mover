@@ -22,11 +22,31 @@ raw_folder_name = "MyRaws"
 # mfm.moveRaws()
 ###############################################################################
 
-## CASO QUIERE MOVER, NO ESTAN TODOS LOS RAWS // FAIL!!!
-mfm = FileMover()
-mfm.setJpgsPath(jpgs_path)
-mfm.setRawsPath(raws_path)
-mfm.wantFolder()
-mfm.dontWantFolder()
-mfm.setFolderName(raw_folder_name)
-mfm.moveRaws()
+## CASO QUIERE MOVER, NO ESTAN TODOS LOS RAWS // OK!!!
+# mfm = FileMover()
+# mfm.setJpgsPath(jpgs_path)
+# mfm.setRawsPath(raws_path)
+
+# mfm.wantFolder()
+# mfm.dontWantFolder()
+
+# mfm.setFolderName(raw_folder_name)
+# mfm.moveRaws()
+
+###############################################################################
+
+## CASO QUIERE COPIAR, ESTAN TODOS (aunque no esten funciona ahora OK!!!)
+# mfm = FileMover()
+# mfm.setJpgsPath(jpgs_path)
+# mfm.setRawsPath(raws_path)
+
+# mfm.wantFolder()
+# mfm.wantCopy()
+# mfm.dontWantCopy()
+
+# mfm.setFolderName(raw_folder_name)
+# mfm.moveRaws()
+
+###############################################################################
+# SE AGREGO PARA DEFINIR LAS EXTENSIONES Y SETEAR SI QUIERO O NO DUMP, CHECKEAR
+# REacomodar la clase

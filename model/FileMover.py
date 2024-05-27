@@ -9,7 +9,21 @@ class FileMover():
         self._wantsFolder = False
         self._finalFolderName = ""
         self._rawEnding = ".dng"
-        self._jpgEnding = ""
+        self._jpgEnding = ".jpg"
+        self._notFounded = []
+        self._isCopy = False
+        self._dumpPath = ""
+    
+    def _dumpNotFounded(self):
+        if len(self._notFounded) == 0: return
+
+        with open("dump.txt", "w") as f:
+            for path in self._notFounded:
+                # Writing data to a file
+                f.write(f"Not founded: {os.path.abspath(path)}\n")
+ 
+        self._notFounded = []
+
 
     def _getJpgsNames(self, path):
         jpgFileNames = set(
@@ -70,9 +84,22 @@ class FileMover():
     
     def dontWantFolder(self):
         self._wantsFolder = False
+
+    def wantCopy(self):
+        self._isCopy = True
     
-    # def copyRaws(self):
-    #     pass
+    def dontWantCopy(self):
+        self._isCopy = False
+
+    def wantDump():pass
+
+    def dontWantDump():pass
+        
+    def setDumpDest():pass
+
+    def setJpgExtension(extension):pass
+
+    def setRawExtension(extension):pass
 
     def moveRaws(self):
         jpgsSet = self._getJpgsNames(self._jpgsPath)
@@ -85,6 +112,10 @@ class FileMover():
                 os.mkdir(finalPath)
 
         for oriRawImgPath in oriRawsPathList:
+            if not os.path.exists(oriRawImgPath): # Is the raw in the expected folder?
+                self._notFounded.append(oriRawImgPath)
+                continue
+
             shutil.copy2(oriRawImgPath, finalPath)
             safe_counter = 0
             destRawImgpath = self._getDestRawPath(oriRawImgPath, finalPath)
@@ -97,6 +128,10 @@ class FileMover():
                 if safe_counter == 20: 
                     raise IOError
             
-            # It's checked that the files are the same, delete the original
-            os.remove(oriRawImgPath)
+            # It's checked that the files are the same, delete the original (only if it's not a copy)
+            if not self._isCopy:
+                os.remove(oriRawImgPath)
+
+        self._dumpNotFounded()
+         
         
