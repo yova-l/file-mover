@@ -1,4 +1,5 @@
 from model.FileMover import FileMover
+from view.FileMover import FileMoverGUI
 
 jpgs_path = "./jpgs/"
 raws_path = "./raws/"
@@ -7,6 +8,9 @@ jpg_ext = ".jpg"
 raw_ext = ".dng"
 dump_path = "./"
 
+mfm = FileMover()
+
+FileMoverGUI(mfm)
 
 ## CASO QUIERE COPIAR, ESTAN TODOS LOS FILES, Y QUIERE CARPETA // OK
 # mfm = FileMover()
