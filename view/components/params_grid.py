@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 
 FONT_BUTTONS = "Agave, Bold"
 FONT_LABEL = "Agave"
@@ -12,11 +13,11 @@ def create_params_grid(parent) -> tk.Frame:
         my_grid.columnconfigure(1, weight=1)
 
         # Some lightgrey styling would be great
-        e1 = tk.Entry(my_grid, fg="grey")
+        e1 = tk.Entry(my_grid, fg="grey", name="proxExtension")
         e1.insert(0, '.jpg')
-        e2 = tk.Entry(my_grid, fg="grey")
+        e2 = tk.Entry(my_grid, fg="grey", name="rawExtension")
         e2.insert(0, '.dng')
-        e3 = tk.Entry(my_grid, fg="grey")
+        e3 = tk.Entry(my_grid, fg="grey", name="folderName")
         e3.insert(0, 'MyRaws')
 
         le1 = tk.Label(my_grid, text = "e.g .jpg, .jpeg, .mp4", 
@@ -26,12 +27,13 @@ def create_params_grid(parent) -> tk.Frame:
         le3 = tk.Label(my_grid, text = "e.g MyRaws", 
                        font=(FONT_LABEL, FONT_SIZE_LABEL))
         
-        chb1val = tk.BooleanVar() # BUT NOW HOW CAN THE PORGRAM ACCESS THESE
-        chb2val = tk.BooleanVar()
-        chb3val = tk.BooleanVar()
-        chb1 = tk.Checkbutton(my_grid, text="Move raws into a new folder?", variable=chb1val)
-        chb2 = tk.Checkbutton(my_grid, text="Want txt with missing raws?", variable=chb2val)
-        chb3 = tk.Checkbutton(my_grid, text="Keep the original raws?", variable=chb3val)
+        # chb1val = tk.IntVar(my_grid, name="moveIntoFolder") # BUT NOW HOW CAN THE PORGRAM ACCESS THESE
+        # chb2val = tk.IntVar(my_grid, name="wantsDumpFile")
+        # chb3val = tk.IntVar(my_grid, name="itsCopy")
+        #, variable=chb1val
+        chb1 = ttk.Checkbutton(my_grid, text="Move raws into a new folder?", name="moveIntoFolder")
+        chb2 = ttk.Checkbutton(my_grid, text="Want txt with missing raws?", name="wantsDumpFile")
+        chb3 = ttk.Checkbutton(my_grid, text="Keep the original raws?", name="itsCopy")
 
         e1.grid(row = 0, column = 0, sticky = tk.W, pady = 2, padx = 2)
         le1.grid(row = 1, column = 0, sticky = tk.W, pady = (0,20), padx = 2)

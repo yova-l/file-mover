@@ -40,12 +40,12 @@ def create_paths_grid(parent) -> tk.Frame:
                       font=(FONT_LABEL, FONT_SIZE_LABEL),
                       pady=20)
 
-        e1 = tk.Entry(my_grid, fg="grey")
-        e1.insert(0, "proj/jpgs/yes/final/")
-        e2 = tk.Entry(my_grid, fg="grey")
-        e2.insert(0, "proj/raws/")
-        e3 = tk.Entry(my_grid, fg="grey")
-        e3.insert(0, "proj/")
+        e1 = tk.Entry(my_grid, fg="grey", name="proxPath")
+        e1.insert(0, "/home/giovanni/Desktop/github-repos/file-mover/tests/jpgs/") 
+        e2 = tk.Entry(my_grid, fg="grey", name="rawsPath")
+        e2.insert(0, "/home/giovanni/Desktop/github-repos/file-mover/tests/raws/")
+        e3 = tk.Entry(my_grid, fg="grey", name="dumpPath")
+        e3.insert(0, "/home/giovanni/Desktop/github-repos/file-mover/tests/")
 
         #command=
         btn1 = tk.Button(my_grid, text=BUTTONS_TEXT, font=(FONT_BUTTONS, BUTTONS_FONT_SIZE), command=lambda: open_dialog_path(e1))

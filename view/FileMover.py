@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+from tkinter import ttk
 
 from .components.menu import create_menu
 from .components.paths_grid import create_paths_grid
@@ -20,7 +21,7 @@ APP_DESC_FONT_SIZE = 11
 DEFAULT_FONT = "Agave" 
 FONT_BUTTONS = "Agave, Bold"
 
-#AGREGAR BOTTON EN/ESP
+
 
 class FileMoverGUI:
     def __init__(self, file_mover_model):
@@ -66,6 +67,7 @@ class FileMoverGUI:
         # Params grid
         self.params_grid = create_params_grid(self.root) # Already packed
 
+        # Main Button
         self.button = tk.Button(self.root, text="MoveRaws!",
                                 font=(FONT_BUTTONS, FONT_SIZE),
                                 command=self.move_raws,
@@ -81,21 +83,54 @@ class FileMoverGUI:
         self.root.mainloop()
 
     def move_raws(self):
-        # Tengo que obtener las variables ... y luego.
         """
-            def setJpgExt(self, extension: str) -> None: self._jpgExtension = extension
-            def setRawExt(self, extension: str) -> None: self._rawExtension = extension
-            def setFolderName(self, name: str) -> None: self._finalFolderName = name
-            def setJpgsPath(self, path: str) -> None: self._jpgsPath = path
-            def setRawsPath(self, path: str) -> None: self._rawsPath = path
-            def wantFolder(self) -> None: self._wantsFolder = True
-            def dontWantFolder(self) -> None: self._wantsFolder = False
-            def wantCopy(self) -> None: self._isCopy = True
-            def dontWantCopy(self) -> None: self._isCopy = False
-            def wantDump(self) -> None: self._wantsDump = True
-            def dontWantDump(self) -> None: self._wantsDump = False
-            def setDumpDest(self, path: str): self._dumpPath = path
+            FileMover Model current interface
+                def setJpgExt(self, extension: str) -> None: self._jpgExtension = extension
+                def setRawExt(self, extension: str) -> None: self._rawExtension = extension
+                def setFolderName(self, name: str) -> None: self._finalFolderName = name
+                def setJpgsPath(self, path: str) -> None: self._jpgsPath = path
+                def setRawsPath(self, path: str) -> None: self._rawsPath = path
+                def wantFolder(self) -> None: self._wantsFolder = True
+                def dontWantFolder(self) -> None: self._wantsFolder = False
+                def wantCopy(self) -> None: self._isCopy = True
+                def dontWantCopy(self) -> None: self._isCopy = False
+                def wantDump(self) -> None: self._wantsDump = True
+                def dontWantDump(self) -> None: self._wantsDump = False
+                def setDumpDest(self, path: str): self._dumpPath = path
         """
-        #self.file_mover_model.moveRaws()
+        # Strs
+        jpg_path = self.paths_grid.nametowidget("proxPath").get()
+        raw_path = self.paths_grid.nametowidget("rawsPath").get()
+        dump_path = self.paths_grid.nametowidget("dumpPath").get()
+
+        # Strs
+        prox_ext = self.params_grid.nametowidget("proxExtension").get()
+        raw_ext = self.params_grid.nametowidget("rawExtension").get()
+        folder_name = self.params_grid.nametowidget("folderName").get()
+
+    
+        # ttk.Checkbutton().state() = ('selected','focused')
+        # Booleans
+        wants_folder = 'selected' in self.params_grid.nametowidget("moveIntoFolder").state() 
+        wants_dump_file = 'selected' in self.params_grid.nametowidget("wantsDumpFile").state()
+        wants_copy = 'selected' in self.params_grid.nametowidget("itsCopy").state()
+        
+        # A method to process all this args might be better but Ok for now
+        if wants_copy: self.file_mover_model.wantCopy()
+        if wants_dump_file: self.file_mover_model.wantDump()
+        if wants_folder: self.file_mover_model.wantFolder()
+
+        self.file_mover_model.setJpgExt(prox_ext)
+        self.file_mover_model.setRawExt(raw_ext)
+        self.file_mover_model.setDumpDest(dump_path)
+        self.file_mover_model.setFolderName(folder_name)
+        self.file_mover_model.setJpgsPath(jpg_path)
+        self.file_mover_model.setRawsPath(raw_path)
+        
+        messagebox.showwarning(title="Attention", message="This might take a while, please wait until the success warning pops up")
+        # IT WOULD TAKE A WHILE HOW TO PROMT THE USER THE WAITING TIME
+
+        self.file_mover_model.moveRaws()
+
         messagebox.showinfo(title="Success", message="Success bb")
 
