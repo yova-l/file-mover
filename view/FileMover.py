@@ -5,6 +5,9 @@ from tkinter import ttk
 from .components.menu import create_menu
 from .components.paths_grid import create_paths_grid
 from .components.params_grid import create_params_grid
+from .components.language_selector import create_lang_selector
+
+from constants import get_texts
 
 WINDOW_TITLE = "FileMover"
 
@@ -21,8 +24,6 @@ APP_DESC_FONT_SIZE = 11
 DEFAULT_FONT = "Agave" 
 FONT_BUTTONS = "Agave, Bold"
 
-
-
 class FileMoverGUI:
     def __init__(self, file_mover_model):
         self.file_mover_model = file_mover_model # In main we plug both logic and GUI
@@ -34,6 +35,10 @@ class FileMoverGUI:
 
         # Windows sizing
         self.root.geometry(MAIN_WINDOW_SIZE)
+
+        # Language selector
+        self.lang_selector = create_lang_selector(self.root)
+        texts = get_texts(create_lang_selector.) # NECESITO TRAERME EL STREING VAR
 
         # Menu -------------------------------------------------------------------
         self.menubar = tk.Menu(self.root)
@@ -80,6 +85,8 @@ class FileMoverGUI:
 
         #self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
+        self.lang_selector.pack(padx=10, pady=10)
+
         self.root.mainloop()
 
     def move_raws(self):
@@ -116,9 +123,9 @@ class FileMoverGUI:
         wants_copy = 'selected' in self.params_grid.nametowidget("itsCopy").state()
         
         # A method to process all this args might be better but Ok for now
-        if wants_copy: self.file_mover_model.wantCopy()
-        if wants_dump_file: self.file_mover_model.wantDump()
-        if wants_folder: self.file_mover_model.wantFolder()
+        self.file_mover_model.setWantCopy(wants_copy)
+        self.file_mover_model.setWantDump(wants_dump_file)
+        self.file_mover_model.setWantFolder(wants_folder)
 
         self.file_mover_model.setJpgExt(prox_ext)
         self.file_mover_model.setRawExt(raw_ext)

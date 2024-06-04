@@ -1,20 +1,20 @@
 import os
 import shutil
 import filecmp
-import platform
+#import platform
 
-OS = platform.system()
+#OS = platform.system()
 
 class FileMover():
     def __init__(self):
-        self._jpgsPath = "./"
-        self._rawsPath = "./"
-        self._dumpPath = "./"
+        self._jpgsPath = ""
+        self._rawsPath = ""
+        self._dumpPath = ""
         self._wantsFolder = True
         self._wantsDump = True
-        self._finalFolderName = "MyRaws"
-        self._rawExtension = ".dng"
-        self._jpgExtension = ".jpg"
+        self._finalFolderName = ""
+        self._rawExtension = ""
+        self._jpgExtension = ""
         self._notFounded = []
         self._isCopy = True
 
@@ -22,15 +22,12 @@ class FileMover():
     def setJpgExt(self, extension: str) -> None: self._jpgExtension = extension
     def setRawExt(self, extension: str) -> None: self._rawExtension = extension
     def setFolderName(self, name: str) -> None: self._finalFolderName = name
-    def setJpgsPath(self, path: str) -> None: self._jpgsPath = path
-    def setRawsPath(self, path: str) -> None: self._rawsPath = path
-    def wantFolder(self) -> None: self._wantsFolder = True
-    def dontWantFolder(self) -> None: self._wantsFolder = False
-    def wantCopy(self) -> None: self._isCopy = True
-    def dontWantCopy(self) -> None: self._isCopy = False
-    def wantDump(self) -> None: self._wantsDump = True
-    def dontWantDump(self) -> None: self._wantsDump = False
-    def setDumpDest(self, path: str): self._dumpPath = path
+    def setWantFolder(self, value: bool) -> None: self._wantsFolder = value
+    def setWantCopy(self, value: bool) -> None: self._isCopy = value
+    def setWantDump(self, value: bool) -> None: self._wantsDump = value
+    def setJpgsPath(self, path: str) -> None: self._jpgsPath = path if path.endswith("/") else (path + "/")
+    def setRawsPath(self, path: str) -> None: self._rawsPath = path if path.endswith("/") else (path + "/")
+    def setDumpDest(self, path: str): self._dumpPath = path if path.endswith("/") else (path + "/")
 
     def _dumpNotFounded(self):
         if len(self._notFounded) == 0 or not self._wantsDump: return
@@ -96,10 +93,13 @@ class FileMover():
             
     def moveRaws(self):
         jpgsSet = self._getJpgsNames(self._jpgsPath)
+
+        if len(jpgsSet) == 0: return
+
         originRawsPathList = self._getRawPaths(self._rawsPath, jpgsSet)
         finalPath = self._jpgsPath
 
-        if self._wantsFolder:
+        if len(originRawsPathList) != 0 and self._wantsFolder:
             finalPath = os.path.join(finalPath, self._finalFolderName)
             if not os.path.exists(finalPath):
                 os.mkdir(finalPath)
@@ -128,5 +128,3 @@ class FileMover():
                 os.remove(originRawImgPath)
 
         self._dumpNotFounded()
-         
-        
