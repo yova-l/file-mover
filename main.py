@@ -1,13 +1,6 @@
 from model.FileMover import FileMover
 from view.FileMover import FileMoverGUI
 
-jpgs_path = "./jpgs/"
-raws_path = "./raws/"
-raw_folder_name = "MyRaws"
-jpg_ext = ".jpg"
-raw_ext = ".dng"
-dump_path = "./"
-
 mfm = FileMover()
 
 FileMoverGUI(mfm)

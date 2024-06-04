@@ -25,26 +25,22 @@ def create_paths_grid(parent) -> tk.Frame:
         my_grid = tk.Frame(parent)
         my_grid.columnconfigure(0, weight=1)
         my_grid.columnconfigure(1, weight=1)
-        my_grid.columnconfigure(2, weight=1)
 
         l1 = tk.Label(my_grid, 
                       text = "Proxies path:", 
-                      font=(FONT_LABEL, FONT_SIZE_LABEL),
-                      pady=20)
+                      font=(FONT_LABEL, FONT_SIZE_LABEL))
         l2 = tk.Label(my_grid, 
                       text = "Raws path:", 
-                      font=(FONT_LABEL, FONT_SIZE_LABEL),
-                      pady=20)
+                      font=(FONT_LABEL, FONT_SIZE_LABEL))
         l3 = tk.Label(my_grid, 
                       text = "Dump file:", 
-                      font=(FONT_LABEL, FONT_SIZE_LABEL),
-                      pady=20)
+                      font=(FONT_LABEL, FONT_SIZE_LABEL))
 
-        e1 = tk.Entry(my_grid, fg="grey", name="proxPath")
+        e1 = tk.Entry(my_grid, fg="grey", name="proxPath", width=40)
         e1.insert(0, "/home/giovanni/Desktop/github-repos/file-mover/tests/jpgs/") 
-        e2 = tk.Entry(my_grid, fg="grey", name="rawsPath")
+        e2 = tk.Entry(my_grid, fg="grey", name="rawsPath", width=40)
         e2.insert(0, "/home/giovanni/Desktop/github-repos/file-mover/tests/raws/")
-        e3 = tk.Entry(my_grid, fg="grey", name="dumpPath")
+        e3 = tk.Entry(my_grid, fg="grey", name="dumpPath", width=40)
         e3.insert(0, "/home/giovanni/Desktop/github-repos/file-mover/tests/")
 
         #command=
@@ -52,17 +48,17 @@ def create_paths_grid(parent) -> tk.Frame:
         btn2 = tk.Button(my_grid, text=BUTTONS_TEXT, font=(FONT_BUTTONS, BUTTONS_FONT_SIZE), command=lambda: open_dialog_path(e2))
         btn3 = tk.Button(my_grid, text=BUTTONS_TEXT, font=(FONT_BUTTONS, BUTTONS_FONT_SIZE), command=lambda: open_dialog_path(e3))
 
-        l1.grid(row = 0, column = 0, sticky = tk.W, pady = 2, padx = 2)
-        l2.grid(row = 1, column = 0, sticky = tk.W, pady = 2, padx = 2)
-        l3.grid(row = 2, column = 0, sticky = tk.W, pady = 2, padx = 2)
+        l1.grid(row = 1, column = 0, sticky = tk.W, pady = (0,20), padx = 2)
+        l2.grid(row = 3, column = 0, sticky = tk.W, pady = (0,20), padx = 2)
+        l3.grid(row = 5, column = 0, sticky = tk.W, pady = (0,20), padx = 2)
 
-        e1.grid(row = 0, column = 1, sticky = tk.E, pady = 2, padx = 2)
-        e2.grid(row = 1, column = 1, sticky = tk.E, pady = 2, padx = 2)
-        e3.grid(row = 2, column = 1, sticky = tk.E, pady = 2, padx = 2)
+        e1.grid(row = 0, column = 0, sticky = tk.W)
+        e2.grid(row = 2, column = 0, sticky = tk.W)
+        e3.grid(row = 4, column = 0, sticky = tk.W)
    
-        btn1.grid(row = 0, column = 2, sticky = tk.W, pady = 2, padx = 2)
-        btn2.grid(row = 1, column = 2, sticky = tk.W, pady = 2, padx = 2)
-        btn3.grid(row = 2, column = 2, sticky = tk.W, pady = 2, padx = 2)
+        btn1.grid(row = 0, column = 1, sticky = tk.W)
+        btn2.grid(row = 2, column = 1, sticky = tk.W)
+        btn3.grid(row = 4, column = 1, sticky = tk.W)
 
         my_grid.pack(pady=20)
 
