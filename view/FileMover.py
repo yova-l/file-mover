@@ -7,22 +7,12 @@ from .components.paths_grid import create_paths_grid
 from .components.params_grid import create_params_grid
 from .components.language_selector import create_lang_selector
 
-from constants import get_texts
+from .constants import ALL_TEXT, CONFIGS
 
 WINDOW_TITLE = "FileMover"
+DEFAULT_LANGUAGE = 0
 
-TITLE_FONT = "Px ToshibaLCD 8x16"
-TITLE = "Welcome to FileMover!"
-TITLE_FONT_SIZE = 35
-
-MAIN_WINDOW_SIZE = "1280x1280"
-
-APP_DESC = "Feel free to just paste the directories or just navigate trough it by pressing the choose folder buttons and select the corresponding locations."
-
-FONT_SIZE = 14
-APP_DESC_FONT_SIZE = 11
-DEFAULT_FONT = "Agave" 
-FONT_BUTTONS = "Agave, Bold"
+# Afuera tener un seguidor de lenguaje, cuando cambie desencana el destroy e init
 
 class FileMoverGUI:
     def __init__(self, file_mover_model):
@@ -34,31 +24,32 @@ class FileMoverGUI:
         self.root.title(WINDOW_TITLE) 
 
         # Windows sizing
-        self.root.geometry(MAIN_WINDOW_SIZE)
+        self.root.geometry(CONFIGS["main_window_default_size"])
 
         # Language selector
         self.lang_selector = create_lang_selector(self.root)
-        texts = get_texts(create_lang_selector.) # NECESITO TRAERME EL STREING VAR
+        lang_val = self.lang_selector.getvar("language_val") # NECESITO TRAERME EL STREING VAR
+        print(lang_val)
 
         # Menu -------------------------------------------------------------------
         self.menubar = tk.Menu(self.root)
 
         self.filemenu = create_menu(self.menubar)
 
-        self.menubar.add_cascade(menu=self.filemenu, label="File")
+        self.menubar.add_cascade(menu=self.filemenu, label="File") #CAmbiar file depende idioma
         self.root.config(menu=self.menubar)
         # ------------------------------------------------------------------------
 
         # Application Title
         self.label = tk.Label(self.root, 
-                              text=TITLE, 
-                              font=(TITLE_FONT, TITLE_FONT_SIZE))
+                              text=ALL_TEXT["title"][1], #por el moemnto hardcodeamos a english
+                              font=(CONFIGS["title_font"], CONFIGS["title_font_size"]))
         self.label.pack(padx=10, pady=50)
 
         # App description
         self.label = tk.Label(self.root, 
-                              text=APP_DESC, 
-                              font=(DEFAULT_FONT, APP_DESC_FONT_SIZE),
+                              text=ALL_TEXT["app_desc"][1], 
+                              font=(CONFIGS["default_font"], CONFIGS["app_desc_font_size"]),
                               width=60,
                               height=7,
                               borderwidth=5,
@@ -74,7 +65,7 @@ class FileMoverGUI:
 
         # Main Button
         self.button = tk.Button(self.root, text="MoveRaws!",
-                                font=(FONT_BUTTONS, FONT_SIZE),
+                                font=(CONFIGS["buttons_font"], CONFIGS["font_size"]),
                                 command=self.move_raws,
                                 fg="lightgoldenrodyellow",
                                 bg="lemonchiffon4",
