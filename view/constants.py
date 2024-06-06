@@ -1,5 +1,5 @@
-SPANISH = 0
-ENGLISH = 1
+# SPANISH = 0
+# ENGLISH = 1
 
 ALL_TEXT = {
     "title": ("Bienvenido a FileMover!", "Welcome to FileMover!"),

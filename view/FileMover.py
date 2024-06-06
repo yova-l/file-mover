@@ -10,11 +10,16 @@ from .components.language_selector import create_lang_selector
 from .constants import ALL_TEXT, CONFIGS
 
 WINDOW_TITLE = "FileMover"
-DEFAULT_LANGUAGE = 0
+LANGUAGES = {"Español": 0, "English": 1}
+CURRENT_LANG_INDEX = 1
 
 # Afuera tener un seguidor de lenguaje, cuando cambie desencana el destroy e init
+def switi():
+    print("HEYYYY")
 
 class FileMoverGUI:
+    current_lang_index = 1
+
     def __init__(self, file_mover_model):
         self.file_mover_model = file_mover_model # In main we plug both logic and GUI
 
@@ -28,8 +33,10 @@ class FileMoverGUI:
 
         # Language selector
         self.lang_selector = create_lang_selector(self.root)
-        lang_val = self.lang_selector.getvar("language_val") # NECESITO TRAERME EL STREING VAR
-        print(lang_val)
+        #self.lang_val = self.lang_selector.getvar("language_val") # NECESITO TRAERME EL STREING VAR
+        self.lang_val = self.lang_selector.get_str_var()
+        self.lang_val.trace_add("write", self.switch_lang)
+    
 
         # Menu -------------------------------------------------------------------
         self.menubar = tk.Menu(self.root)
@@ -40,15 +47,16 @@ class FileMoverGUI:
         self.root.config(menu=self.menubar)
         # ------------------------------------------------------------------------
 
+        print(f"Reborned, lang_ind_val is {self.current_lang_index}")
         # Application Title
         self.label = tk.Label(self.root, 
-                              text=ALL_TEXT["title"][1], #por el moemnto hardcodeamos a english
+                              text=ALL_TEXT["title"][self.current_lang_index], #por el moemnto hardcodeamos a english
                               font=(CONFIGS["title_font"], CONFIGS["title_font_size"]))
         self.label.pack(padx=10, pady=50)
 
         # App description
         self.label = tk.Label(self.root, 
-                              text=ALL_TEXT["app_desc"][1], 
+                              text=ALL_TEXT["app_desc"][self.current_lang_index], 
                               font=(CONFIGS["default_font"], CONFIGS["app_desc_font_size"]),
                               width=60,
                               height=7,
@@ -79,6 +87,14 @@ class FileMoverGUI:
         self.lang_selector.pack(padx=10, pady=10)
 
         self.root.mainloop()
+
+    def switch_lang(self, *args, **kwargs):
+        self.root.destroy()
+        lang_val_str = self.lang_val.get()
+        # print(lang_val_str)
+        self.current_lang_index = LANGUAGES[lang_val_str]
+        # print(CURRENT_LANG_INDEX)
+        self.__init__(self.file_mover_model)
 
     def move_raws(self):
         """
