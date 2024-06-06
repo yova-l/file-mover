@@ -3,7 +3,8 @@
 
 ALL_TEXT = {
     "title": ("Bienvenido a FileMover!", "Welcome to FileMover!"),
-    "app_desc": ("Esta app es blablab","Feel free to just paste the directories or just navigate trough it by pressing the choose folder buttons and select the corresponding locations."),
+    "app_desc": ("Para comenzar simplemente pegue las rutas correspondientes o busque las rutas presionando el botón",
+                 "To get started just copy and paste the corresponding directories or just navigate trough them by pressing the button"),
 }
 
 CONFIGS = {

@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import messagebox
-from tkinter import ttk
 
 from .components.menu import create_menu
 from .components.paths_grid import create_paths_grid
@@ -11,11 +10,6 @@ from .constants import ALL_TEXT, CONFIGS
 
 WINDOW_TITLE = "FileMover"
 LANGUAGES = {"Español": 0, "English": 1}
-CURRENT_LANG_INDEX = 1
-
-# Afuera tener un seguidor de lenguaje, cuando cambie desencana el destroy e init
-def switi():
-    print("HEYYYY")
 
 class FileMoverGUI:
     current_lang_index = 1
@@ -32,25 +26,18 @@ class FileMoverGUI:
         self.root.geometry(CONFIGS["main_window_default_size"])
 
         # Language selector
-        self.lang_selector = create_lang_selector(self.root)
-        #self.lang_val = self.lang_selector.getvar("language_val") # NECESITO TRAERME EL STREING VAR
-        self.lang_val = self.lang_selector.get_str_var()
-        self.lang_val.trace_add("write", self.switch_lang)
+        self.lang_selector = create_lang_selector(self.root, self.switch_lang)
     
-
         # Menu -------------------------------------------------------------------
         self.menubar = tk.Menu(self.root)
-
         self.filemenu = create_menu(self.menubar)
-
         self.menubar.add_cascade(menu=self.filemenu, label="File") #CAmbiar file depende idioma
         self.root.config(menu=self.menubar)
         # ------------------------------------------------------------------------
 
-        print(f"Reborned, lang_ind_val is {self.current_lang_index}")
         # Application Title
         self.label = tk.Label(self.root, 
-                              text=ALL_TEXT["title"][self.current_lang_index], #por el moemnto hardcodeamos a english
+                              text=ALL_TEXT["title"][self.current_lang_index],
                               font=(CONFIGS["title_font"], CONFIGS["title_font_size"]))
         self.label.pack(padx=10, pady=50)
 
@@ -82,7 +69,7 @@ class FileMoverGUI:
         self.button.pack(padx=10, pady=10)
 
 
-        #self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
+        self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
         self.lang_selector.pack(padx=10, pady=10)
 
@@ -90,11 +77,14 @@ class FileMoverGUI:
 
     def switch_lang(self, *args, **kwargs):
         self.root.destroy()
-        lang_val_str = self.lang_val.get()
-        # print(lang_val_str)
+        str_var = self.lang_selector.get_str_var()
+        lang_val_str = str_var.get()
         self.current_lang_index = LANGUAGES[lang_val_str]
-        # print(CURRENT_LANG_INDEX)
         self.__init__(self.file_mover_model)
+
+    def on_closing(self):
+        messagebox.showinfo(title="Bye", message="Bye bro")
+        self.root.destroy()
 
     def move_raws(self):
         """
