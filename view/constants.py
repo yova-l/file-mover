@@ -2,9 +2,11 @@
 # ENGLISH = 1
 
 ALL_TEXT = {
+    "menu": ("Sobre FileMover", "About"),
     "title": ("Bienvenido a FileMover!", "Welcome to FileMover!"),
     "app_desc": ("Para comenzar simplemente pegue las rutas correspondientes o busque las rutas presionando el botón",
                  "To get started just copy and paste the corresponding directories or just navigate trough them by pressing the button"),
+    "button": "MoveRaws!",
 }
 
 CONFIGS = {

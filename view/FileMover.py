@@ -31,7 +31,7 @@ class FileMoverGUI:
         # Menu -------------------------------------------------------------------
         self.menubar = tk.Menu(self.root)
         self.filemenu = create_menu(self.menubar)
-        self.menubar.add_cascade(menu=self.filemenu, label="File") #CAmbiar file depende idioma
+        self.menubar.add_cascade(menu=self.filemenu, label=ALL_TEXT["menu"][self.current_lang_index])
         self.root.config(menu=self.menubar)
         # ------------------------------------------------------------------------
 
@@ -59,7 +59,7 @@ class FileMoverGUI:
         self.params_grid = create_params_grid(self.root) # Already packed
 
         # Main Button
-        self.button = tk.Button(self.root, text="MoveRaws!",
+        self.button = tk.Button(self.root, text=ALL_TEXT["button"],
                                 font=(CONFIGS["buttons_font"], CONFIGS["font_size"]),
                                 command=self.move_raws,
                                 fg="lightgoldenrodyellow",
