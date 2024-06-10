@@ -1,13 +1,14 @@
 import tkinter as tk
 from tkinter import ttk
+from ..constants import ALL_TEXT
 
 FONT_BUTTONS = "Agave, Bold"
 FONT_LABEL = "Agave"
 FONT_SIZE_LABEL = 11
-BUTTONS_TEXT = "Choose folder..."
+#BUTTONS_TEXT = "Choose folder..."
 BUTTONS_FONT_SIZE = 13
 
-def create_params_grid(parent) -> tk.Frame:
+def create_params_grid(parent, lang_index) -> tk.Frame:
         my_grid = tk.Frame(parent)
         my_grid.columnconfigure(0, weight=1)
         my_grid.columnconfigure(1, weight=1)
@@ -20,11 +21,11 @@ def create_params_grid(parent) -> tk.Frame:
         e3 = tk.Entry(my_grid, fg="grey", name="folderName")
         e3.insert(0, 'MyRaws')
 
-        le1 = tk.Label(my_grid, text = "e.g .jpg, .jpeg, .mp4", 
+        le1 = tk.Label(my_grid, text = ALL_TEXT["ext_jps"][lang_index], 
                        font=(FONT_LABEL, FONT_SIZE_LABEL))
-        le2 = tk.Label(my_grid, text = "e.g, .raw, .dng, .rw2", 
+        le2 = tk.Label(my_grid, text = ALL_TEXT["ext_raw"][lang_index], 
                        font=(FONT_LABEL, FONT_SIZE_LABEL))
-        le3 = tk.Label(my_grid, text = "e.g MyRaws", 
+        le3 = tk.Label(my_grid, text = ALL_TEXT["raw_folder"][lang_index], 
                        font=(FONT_LABEL, FONT_SIZE_LABEL))
         
         # chb1val = tk.IntVar(my_grid, name="moveIntoFolder") # BUT NOW HOW CAN THE PORGRAM ACCESS THESE

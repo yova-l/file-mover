@@ -1,11 +1,10 @@
 import tkinter as tk
 from tkinter import filedialog as fd
+from ..constants import ALL_TEXT
 
 FONT_LABEL = "Agave"
 FONT_SIZE_LABEL = 12
-
 FONT_BUTTONS = "Agave, Bold"
-BUTTONS_TEXT = "Choose folder..."
 BUTTONS_FONT_SIZE = 9
 
 def open_dialog_path(entry): 
@@ -21,19 +20,21 @@ def open_dialog_path(entry):
         entry.delete(0, tk.END)
         entry.insert(0, path)
 
-def create_paths_grid(parent) -> tk.Frame:
+def create_paths_grid(parent, lang_index) -> tk.Frame:
+        button_text = ALL_TEXT["nav_button"][lang_index]
+
         my_grid = tk.Frame(parent)
         my_grid.columnconfigure(0, weight=1)
         my_grid.columnconfigure(1, weight=1)
 
         l1 = tk.Label(my_grid, 
-                      text = "Proxies path:", 
+                      text = ALL_TEXT["prox_path"][lang_index], 
                       font=(FONT_LABEL, FONT_SIZE_LABEL))
         l2 = tk.Label(my_grid, 
-                      text = "Raws path:", 
+                      text = ALL_TEXT["raws_path"][lang_index], 
                       font=(FONT_LABEL, FONT_SIZE_LABEL))
         l3 = tk.Label(my_grid, 
-                      text = "Dump file:", 
+                      text = ALL_TEXT["dump_path"][lang_index], 
                       font=(FONT_LABEL, FONT_SIZE_LABEL))
 
         e1 = tk.Entry(my_grid, fg="grey", name="proxPath", width=40)
@@ -44,9 +45,9 @@ def create_paths_grid(parent) -> tk.Frame:
         e3.insert(0, "/home/giovanni/Desktop/github-repos/file-mover/tests/")
 
         #command=
-        btn1 = tk.Button(my_grid, text=BUTTONS_TEXT, font=(FONT_BUTTONS, BUTTONS_FONT_SIZE), command=lambda: open_dialog_path(e1))
-        btn2 = tk.Button(my_grid, text=BUTTONS_TEXT, font=(FONT_BUTTONS, BUTTONS_FONT_SIZE), command=lambda: open_dialog_path(e2))
-        btn3 = tk.Button(my_grid, text=BUTTONS_TEXT, font=(FONT_BUTTONS, BUTTONS_FONT_SIZE), command=lambda: open_dialog_path(e3))
+        btn1 = tk.Button(my_grid, text=button_text, font=(FONT_BUTTONS, BUTTONS_FONT_SIZE), command=lambda: open_dialog_path(e1))
+        btn2 = tk.Button(my_grid, text=button_text, font=(FONT_BUTTONS, BUTTONS_FONT_SIZE), command=lambda: open_dialog_path(e2))
+        btn3 = tk.Button(my_grid, text=button_text, font=(FONT_BUTTONS, BUTTONS_FONT_SIZE), command=lambda: open_dialog_path(e3))
 
         l1.grid(row = 1, column = 0, sticky = tk.W, pady = (0,20), padx = 2)
         l2.grid(row = 3, column = 0, sticky = tk.W, pady = (0,20), padx = 2)

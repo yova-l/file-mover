@@ -1,21 +1,20 @@
 import tkinter as tk
 from tkinter import messagebox
+from ..constants import ALL_TEXT
 
-ABOUT_MESSAGE = """ 
-Thanks for using FileMover, for any suggestion or to see the code you can visit the website. Feel free to reach me 
-out trough any of my social media. Also it would be lovely if you can contribute with a donation so I can keep making
-free and open source software on demand. Also leave your ideas so I can consider it as my next project.
-"""
+ABOUT_WINDOW_TITLE = "About FileMover"
 
-def about_message():
-    messagebox.showinfo(title="About FileMover", message=ABOUT_MESSAGE)
+def about_message(lang_index):
+    messagebox.showinfo(title=ABOUT_WINDOW_TITLE, message=ALL_TEXT["about_text"][lang_index])
+    # el message box deberia tener el hipervinculo
 
 def donate_web():
-    messagebox.showinfo(title="About FileMover", message=ABOUT_MESSAGE)
+    # messagebox.showinfo(title="About FileMover", message=ABOUT_MESSAGE)
+    pass # Launchea el link tree
 
-def create_menu(parent):
+def create_menu(parent, lang_index):
     menu = tk.Menu(parent, tearoff=0)
-    menu.add_command(label="About", command=about_message)
+    menu.add_command(label=ALL_TEXT["about_menu"], command=lambda: about_message(lang_index))
     menu.add_separator()
-    menu.add_command(label="Donate", command=donate_web)
+    menu.add_command(label=ALL_TEXT["donate_menu"], command=lambda: donate_web(lang_index))
     return menu

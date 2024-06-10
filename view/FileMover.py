@@ -6,31 +6,29 @@ from .components.paths_grid import create_paths_grid
 from .components.params_grid import create_params_grid
 from .components.language_selector import create_lang_selector
 
-from .constants import ALL_TEXT, CONFIGS
+from .constants import ALL_TEXT
 
-WINDOW_TITLE = "FileMover"
 LANGUAGES = {"Español": 0, "English": 1}
 
 class FileMoverGUI:
     current_lang_index = 1
 
     def __init__(self, file_mover_model):
-        self.file_mover_model = file_mover_model # In main we plug both logic and GUI
+        self.file_mover_model = file_mover_model
 
         self.root = tk.Tk()
 
-        # Windows Title
-        self.root.title(WINDOW_TITLE) 
+        self.root.title(ALL_TEXT["main_window_title"]) 
 
         # Windows sizing
-        self.root.geometry(CONFIGS["main_window_default_size"])
+        self.root.geometry("1280x1280")
 
         # Language selector
         self.lang_selector = create_lang_selector(self.root, self.switch_lang)
     
         # Menu -------------------------------------------------------------------
         self.menubar = tk.Menu(self.root)
-        self.filemenu = create_menu(self.menubar)
+        self.filemenu = create_menu(self.menubar, self.current_lang_index)
         self.menubar.add_cascade(menu=self.filemenu, label=ALL_TEXT["menu"][self.current_lang_index])
         self.root.config(menu=self.menubar)
         # ------------------------------------------------------------------------
@@ -38,13 +36,13 @@ class FileMoverGUI:
         # Application Title
         self.label = tk.Label(self.root, 
                               text=ALL_TEXT["title"][self.current_lang_index],
-                              font=(CONFIGS["title_font"], CONFIGS["title_font_size"]))
+                              font=("Px ToshibaLCD 8x16", 35))
         self.label.pack(padx=10, pady=50)
 
         # App description
         self.label = tk.Label(self.root, 
                               text=ALL_TEXT["app_desc"][self.current_lang_index], 
-                              font=(CONFIGS["default_font"], CONFIGS["app_desc_font_size"]),
+                              font=("Agave", 11),
                               width=60,
                               height=7,
                               borderwidth=5,
@@ -53,23 +51,20 @@ class FileMoverGUI:
         self.label.pack(padx=10, pady=10)
         
         # Paths Grid
-        self.paths_grid = create_paths_grid(self.root) # Already packed 
+        self.paths_grid = create_paths_grid(self.root, self.current_lang_index) # Already packed 
 
         # Params grid
-        self.params_grid = create_params_grid(self.root) # Already packed
+        self.params_grid = create_params_grid(self.root, self.current_lang_index) # Already packed
 
         # Main Button
         self.button = tk.Button(self.root, text=ALL_TEXT["button"],
-                                font=(CONFIGS["buttons_font"], CONFIGS["font_size"]),
+                                font=("Agave, Bold", 14),
                                 command=self.move_raws,
                                 fg="lightgoldenrodyellow",
                                 bg="lemonchiffon4",
                                 width=15,
                                 height=2)
         self.button.pack(padx=10, pady=10)
-
-
-        self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
         self.lang_selector.pack(padx=10, pady=10)
 
@@ -81,10 +76,6 @@ class FileMoverGUI:
         lang_val_str = str_var.get()
         self.current_lang_index = LANGUAGES[lang_val_str]
         self.__init__(self.file_mover_model)
-
-    def on_closing(self):
-        messagebox.showinfo(title="Bye", message="Bye bro")
-        self.root.destroy()
 
     def move_raws(self):
         """
