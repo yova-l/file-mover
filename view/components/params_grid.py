@@ -32,9 +32,9 @@ def create_params_grid(parent, lang_index) -> tk.Frame:
         # chb2val = tk.IntVar(my_grid, name="wantsDumpFile")
         # chb3val = tk.IntVar(my_grid, name="itsCopy")
         #, variable=chb1val
-        chb1 = ttk.Checkbutton(my_grid, text="Move raws into a new folder?", name="moveIntoFolder")
-        chb2 = ttk.Checkbutton(my_grid, text="Want txt with missing raws?", name="wantsDumpFile")
-        chb3 = ttk.Checkbutton(my_grid, text="Keep the original raws?", name="itsCopy")
+        chb1 = ttk.Checkbutton(my_grid, text=ALL_TEXT["raws_folder_chkb"][lang_index], name="moveIntoFolder")
+        chb2 = ttk.Checkbutton(my_grid, text=ALL_TEXT["dump_file_chkb"][lang_index], name="wantsDumpFile")
+        chb3 = ttk.Checkbutton(my_grid, text=ALL_TEXT["copy_chkb"][lang_index], name="itsCopy")
 
         e1.grid(row = 0, column = 0, sticky = tk.W, pady = 2, padx = 2)
         le1.grid(row = 1, column = 0, sticky = tk.W, pady = (0,20), padx = 2)
