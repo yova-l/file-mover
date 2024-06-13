@@ -20,7 +20,7 @@ def open_dialog_path(entry):
         entry.delete(0, tk.END)
         entry.insert(0, path)
 
-def create_paths_grid(parent, lang_index) -> tk.Frame:
+def create_paths_grid(parent, lang_index, scale_factor) -> tk.Frame:
         button_text = ALL_TEXT["nav_button"][lang_index]
 
         my_grid = tk.Frame(parent)
@@ -29,15 +29,15 @@ def create_paths_grid(parent, lang_index) -> tk.Frame:
 
         l1 = tk.Label(my_grid, 
                       text = ALL_TEXT["prox_path"][lang_index], 
-                      font=(FONT_LABEL, FONT_SIZE_LABEL))
+                      font=(FONT_LABEL, int(FONT_SIZE_LABEL*scale_factor)))
         l2 = tk.Label(my_grid, 
                       text = ALL_TEXT["raws_path"][lang_index], 
-                      font=(FONT_LABEL, FONT_SIZE_LABEL))
+                      font=(FONT_LABEL, int(FONT_SIZE_LABEL*scale_factor)))
         l3 = tk.Label(my_grid, 
                       text = ALL_TEXT["dump_path"][lang_index], 
                       font=(FONT_LABEL, FONT_SIZE_LABEL))
 
-        e1 = tk.Entry(my_grid, fg="grey", name="proxPath", width=40)
+        e1 = tk.Entry(my_grid, fg="grey", name="proxPath", width=int(40*scale_factor))
         e1.insert(0, "/home/giovanni/Desktop/github-repos/file-mover/tests/jpgs/") 
         e2 = tk.Entry(my_grid, fg="grey", name="rawsPath", width=40)
         e2.insert(0, "/home/giovanni/Desktop/github-repos/file-mover/tests/raws/")
@@ -49,7 +49,7 @@ def create_paths_grid(parent, lang_index) -> tk.Frame:
         btn2 = tk.Button(my_grid, text=button_text, font=(FONT_BUTTONS, BUTTONS_FONT_SIZE), command=lambda: open_dialog_path(e2))
         btn3 = tk.Button(my_grid, text=button_text, font=(FONT_BUTTONS, BUTTONS_FONT_SIZE), command=lambda: open_dialog_path(e3))
 
-        l1.grid(row = 1, column = 0, sticky = tk.W, pady = (0,20), padx = 2)
+        l1.grid(row = 1, column = 0, sticky = tk.W, pady = (0,int(20*scale_factor)), padx = 2)
         l2.grid(row = 3, column = 0, sticky = tk.W, pady = (0,20), padx = 2)
         l3.grid(row = 5, column = 0, sticky = tk.W, pady = (0,20), padx = 2)
 
@@ -61,6 +61,6 @@ def create_paths_grid(parent, lang_index) -> tk.Frame:
         btn2.grid(row = 2, column = 1, sticky = tk.W)
         btn3.grid(row = 4, column = 1, sticky = tk.W)
 
-        my_grid.pack(pady=20)
+        my_grid.pack(pady=int(20*scale_factor))
 
         return my_grid

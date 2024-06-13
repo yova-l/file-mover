@@ -5,6 +5,8 @@ mfm = FileMover()
 
 FileMoverGUI(mfm)
 
+#How to get a nice ui based on the current executing system?
+
 # AGREGAR TEXTO DE CHECKBUTTONs en ALL Text, en params_grid
 # Enchufar linktree al about popup
 # Tunear about pop up
