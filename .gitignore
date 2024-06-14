@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Any test heavy files
+*.mp4
+*.raw
+
 # C extensions
 *.so
 
