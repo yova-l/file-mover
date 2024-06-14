@@ -10,30 +10,13 @@ from .constants import ALL_TEXT
 
 LANGUAGES = {"Español": 0, "English": 1}
 
-"""
-import tkinter as tk
-
-def get_dimensions():
-     print(root.winfo_x(), root.winfo_y())
-     print(root.geometry())
-     print(root.winfo_screenwidth(), root.winfo_screenheight())
-
-root=tk.Tk()
-root.geometry("+10+10")
-info_window = {}
-
- tk.Button(root,text="Get Dimensions",
-              command=get_dimensions).grid()
-
-root.mainloop()
-"""
+# Original Development Resolution
+DEV_RES_WIDTH = 3840
+DEV_WINDOW_WIDTH = 1280
+DEV_WINDOW_HEIGHT = 1400
 
 class FileMoverGUI:
     current_lang_index = 1
-    development_res_width = 3840
-    #development_res_height = 2160
-    dev_window_width = 1280
-    dev_window_height = 1280
 
     def __init__(self, file_mover_model):
         self.file_mover_model = file_mover_model
@@ -42,17 +25,13 @@ class FileMoverGUI:
 
         current_screen_width = self.root.winfo_screenwidth() 
         #currenct_screen_height = self.root.winfo_screenheight()
-        scale_factor =  current_screen_width / self.development_res_width
+        scale_factor =  current_screen_width / DEV_RES_WIDTH * 1.25
 
         self.root.title(ALL_TEXT["main_window_title"]) 
 
         # Windows sizing 
-        width = int(self.dev_window_width * scale_factor)
-        height = int(self.dev_window_height * scale_factor)
-        print(width, height) 
-        print(self.dev_window_width, scale_factor)
-        print(self.dev_window_height)
-       
+        width = int(DEV_WINDOW_WIDTH * scale_factor)
+        height = int(DEV_WINDOW_HEIGHT * scale_factor)
         self.root.geometry(f"{width}x{height}")
 
         # Language selector
@@ -68,19 +47,19 @@ class FileMoverGUI:
         # Application Title
         self.label = tk.Label(self.root, 
                               text=ALL_TEXT["title"][self.current_lang_index],
-                              font=("Px ToshibaLCD 8x16", int(35*scale_factor)))
+                              font=("Px ToshibaLCD 8x16", int(45*scale_factor)))
         self.label.pack(padx=int(10*scale_factor), pady=int(50*scale_factor))
 
         # App description
         self.label = tk.Label(self.root, 
                               text=ALL_TEXT["app_desc"][self.current_lang_index], 
-                              font=("Agave", int(11*scale_factor)),
-                              width=int(60*scale_factor),
-                              height=int(7*scale_factor),
+                              font=("Agave", int(11)),
+                              width=int(70*scale_factor),
+                              height=int(8*scale_factor),
                               borderwidth=5,
                               relief="ridge",
                               wraplength=int(800*scale_factor))
-        self.label.pack(padx=int(10*scale_factor), pady=int(10*scale_factor))
+        self.label.pack(padx=int(10*scale_factor), pady=(int(10*scale_factor), int(30*scale_factor)))
         
         # Paths Grid
         self.paths_grid = create_paths_grid(self.root, self.current_lang_index, scale_factor) # Already packed 
@@ -90,7 +69,7 @@ class FileMoverGUI:
 
         # Main Button
         self.button = tk.Button(self.root, text=ALL_TEXT["button"],
-                                font=("Agave, Bold", int(14*scale_factor)),
+                                font=("Agave, Bold", int(20*scale_factor)),
                                 command=self.move_raws,
                                 fg="lightgoldenrodyellow",
                                 bg="lemonchiffon4",

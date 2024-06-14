@@ -12,11 +12,12 @@ ALL_TEXT = {
     "ext_raw": ("Extensión raws", "Raws extension"),
     "raw_folder": ("Ej: myRawsMovidos", "e.g MyMovedRaws"),
     "donate_menu": ("Donar", "Donate"),
-    "about_text": ("Gracias por usar FileMover, cualquier sugerencia o recomendación siéntase libre de contactarse conmigo a través de cualquiera de mis redes sociales. \nSi pudieras dejar una donación lo agradecería un montón y me motivaría a seguir creando software util gratis y libre.", "Thanks for using FileMover, for any suggestions you might have, please feel free to reach out through any of my social media accounts.\nAlso if you could contribute by donating I would appreciate it and would motivate me to create more useful free open-source software."),
+    "about_text": ("Gracias por usar FileMover, cualquier sugerencia o recomendación siéntase libre de contactarse conmigo a través de cualquiera de mis redes sociales. \nSi pudieras dejar una donación lo agradecería un montón y me motivaría a seguir creando software util gratis y libre.\n¿Quisiera visitar mi linktr? https://linktr.ee/GiovanniLDev", "Thanks for using FileMover, for any suggestions you might have, please feel free to reach out through any of my social media accounts.\nAlso if you could contribute by donating I would appreciate it and would motivate me to create more useful free open-source software.\nWould you like to visit my linktr? https://linktr.ee/GiovanniLDev"),
     "about_menu": "About",
     "button": "MoveRaws!",
     "raws_folder_chkb": ("Mover Raws a nueva carpeta?","Move raws into a new folder?"),
     "dump_file_chkb": ("Generar archivo dump con raws no encontrados?","Generate dump file containing all missing raws?"),
     "copy_chkb": ("Mantener copias raws originales?","Keep original raws copies?"),
-    "linkedin_link": ("https://www.linkedin.com/in/giovannil-lombardi/?locale=es_ES","https://www.linkedin.com/in/giovannil-lombardi/")
+    "linkedin_link": ("https://www.linkedin.com/in/giovannil-lombardi/?locale=es_ES","https://www.linkedin.com/in/giovannil-lombardi/"),
+    "linktree_link": "https://linktr.ee/GiovanniLDev"
 }

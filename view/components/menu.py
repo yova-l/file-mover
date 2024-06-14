@@ -2,15 +2,26 @@ import tkinter as tk
 from tkinter import messagebox
 from ..constants import ALL_TEXT
 
+import webbrowser
+
 ABOUT_WINDOW_TITLE = "About FileMover"
 
 def about_message(lang_index):
-    messagebox.showinfo(title=ABOUT_WINDOW_TITLE, message=ALL_TEXT["about_text"][lang_index])
-    # el message box deberia tener el hipervinculo
+    wants_to_visit = messagebox.askyesno(title=ABOUT_WINDOW_TITLE, message=ALL_TEXT["about_text"][lang_index])
+    
+    if wants_to_visit:
+        webbrowser.open_new(ALL_TEXT["linktree_link"])
 
 def donate_web():
-    # messagebox.showinfo(title="About FileMover", message=ABOUT_MESSAGE)
-    pass # Launchea el link tree
+    webbrowser.open_new(ALL_TEXT["linktree_link"])
+
+def create_menu(parent, lang_index):
+    menu = tk.Menu(parent, tearoff=0)
+    menu.add_command(label=ALL_TEXT["about_menu"], command=lambda: about_message(lang_index))
+    menu.add_separator()
+    menu.add_command(label=ALL_TEXT["donate_menu"][lang_index], command=donate_web)
+    return menu
+
 """
 Bind the label to "<Button-1>" event. When it is raised the callback is executed resulting in a new page opening in your default browser.
 
@@ -34,10 +45,3 @@ You can also open files by changing the callback to:
 
 webbrowser.open_new(r"file://c:\test\test.csv")
 """
-
-def create_menu(parent, lang_index):
-    menu = tk.Menu(parent, tearoff=0)
-    menu.add_command(label=ALL_TEXT["about_menu"], command=lambda: about_message(lang_index))
-    menu.add_separator()
-    menu.add_command(label=ALL_TEXT["donate_menu"][lang_index], command=donate_web)
-    return menu

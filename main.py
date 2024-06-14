@@ -5,17 +5,11 @@ mfm = FileMover()
 
 FileMoverGUI(mfm)
 
-#How to get a nice ui based on the current executing system?
 
-# AGREGAR TEXTO DE CHECKBUTTONs en ALL Text, en params_grid
-# Enchufar linktree al about popup
-# Tunear about pop up
-# Arreglar donate
+# CREAR MINI WEB CV CON LINKS A PROYECTOS
+
 # Cancel program in the middle of a copy?
-#paypal.me
-#https://www.youtube.com/watch?v=qfA0EprMOFo // MP
-# ALIAS RIO
-# https://linktr.ee/
-# LOADING PROGRESS BAR ESCIAL
+
+# LOADING PROGRESS BAR ESCIAL Y CLEAN LOS MENSAJES PEDORROS
 # TO EXE
 # TEST ON WINDWOS/LIN/MAC
