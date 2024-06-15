@@ -18,7 +18,7 @@ ALL_TEXT = {
     "warn_precopy_title": ("Atención!", "Warning!"),
     "warn_precopy_text": ("Esto puede tomar un tiempo, por favor espera hasta que el proceso termine. Si necesita interrumpirlo, no se preocupe, vuelva a ejecutar el programa y se retomará el proceso normalmente", "This might take a while, please wait until the process is finished, if you need to interrupt the process, don't worry, the next time you execute the program it will resume the copy normally."),
     "warn_copy_success_title": ("Éxito!", "Success!"),
-    "warn_copy_success_text": ("Todos los archivos han sido copiados exitosamente", "All files have been copied successfully"),
+    # "warn_copy_success_text": ("Todos los archivos han sido copiados exitosamente", "All files have been copied successfully"),
     "raws_folder_chkb": ("Mover Raws a nueva carpeta?","Move raws into a new folder?"),
     "dump_file_chkb": ("Generar archivo dump con raws no encontrados?","Generate dump file containing all missing raws?"),
     "copy_chkb": ("Mantener copias raws originales?","Keep original raws copies?"),

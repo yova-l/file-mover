@@ -1,7 +1,5 @@
 import tkinter as tk
 from tkinter import messagebox
-from tkinter import ttk
-import os
 
 from .components.menu import create_menu
 from .components.paths_grid import create_paths_grid
@@ -10,32 +8,6 @@ from .components.language_selector import create_lang_selector
 from .components.progress_bar import prompt_progress_windows
 
 from .constants import ALL_TEXT
-
-# TEST ZONE ==================================================================
-def copy_file_with_progress(guiUpdater):
-    # Example source and destination paths
-    src = '/home/giovanni/Desktop/github-repos/file-mover/view/components/atest.mp4'  # Change this to your source file path
-    dst = '/home/giovanni/Desktop/github-repos/file-mover/view/components/atestCOPY.mp4'  # Change this to your destination file path
-
-    total_size = os.path.getsize(src)
-    copied_size = 0
-    
-    with open(src, 'rb') as src_file:
-        with open(dst, 'wb') as dst_file:
-            while True:
-                chunk = src_file.read(1024 * 1024)  # Read in 1MB chunks
-                if not chunk:
-                    break
-                dst_file.write(chunk)
-                copied_size += len(chunk)
-                
-                # Calculate progress
-                progress_value = (copied_size / total_size) * 100
-   
-                guiUpdater.update_progress_bar(progress_value)
-
-# END TEST ZONE ==============================================================
-
 
 LANGUAGES = {"Español": 0, "English": 1}
 
@@ -167,5 +139,5 @@ class FileMoverGUI:
 
         prompt_progress_windows(self.file_mover_model.moveRaws)
         
-        messagebox.showinfo(title=ALL_TEXT["warn_copy_success_title"][self.current_lang_index], message=ALL_TEXT["warn_copy_success_text"][self.current_lang_index])
+        # messagebox.showinfo(title=ALL_TEXT["warn_copy_success_title"][self.current_lang_index], message=ALL_TEXT["warn_copy_success_text"][self.current_lang_index])
 

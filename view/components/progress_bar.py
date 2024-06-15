@@ -23,23 +23,26 @@ class ProgressWindowUpdater:
 
 def prompt_progress_windows(function_to_run):
     root = tk.Tk()
-    root.geometry("500x600")
+    root.geometry("250x250")
 
-    current_file_name_label = tk.Label(root,text="templateFile001.dng",font=("Px ToshibaLCD 8x16", 20))
-    current_file_name_label.pack(padx=10, pady=10)
+    root.title("Copying Files...")
 
-    current_file_number = tk.Label(root,text="1/100",font=("Px ToshibaLCD 8x16", 20))
+    # Title
+    current_file_name_label = tk.Label(root,text="templateFile001.dng",font=("Px ToshibaLCD 8x16", 12))
+    current_file_name_label.pack(padx=10, pady=12)
+
+    # File Counter
+    current_file_number = tk.Label(root,text="1/100",font=("Px ToshibaLCD 8x16", 11))
     current_file_number.pack(padx=10, pady=10)
     
+    # Progress Bar
     prog_bar = ttk.Progressbar(root, orient='horizontal', length=200, mode='determinate', maximum=100)
     prog_bar.pack(pady=20, padx=20)
 
     cancel_button = tk.Button(root, text="Cancel",
-                        font=("Agave, Bold", 20),
+                        font=("Agave, Bold", 11),
                         command=root.destroy,
-                        fg="lightgoldenrodyellow",
-                        bg="lemonchiffon4",
-                        width=15,
+                        width=4,
                         height=2)
     cancel_button.pack(padx=10, pady=10)
 
