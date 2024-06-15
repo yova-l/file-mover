@@ -162,11 +162,10 @@ class FileMoverGUI:
         self.file_mover_model.setJpgsPath(jpg_path)
         self.file_mover_model.setRawsPath(raw_path)
         
-        messagebox.showwarning(title="Attention", message="This might take a while, please wait until the success warning pops up")
+        messagebox.showwarning(title=ALL_TEXT["warn_precopy_title"][self.current_lang_index], message=ALL_TEXT["warn_precopy_text"][self.current_lang_index])
         # IT WOULD TAKE A WHILE HOW TO PROMT THE USER THE WAITING TIME
 
-        prompt_progress_windows(copy_file_with_progress)
-        #self.file_mover_model.moveRaws()
-
-        messagebox.showinfo(title="Success", message="Success bb")
+        prompt_progress_windows(self.file_mover_model.moveRaws)
+        
+        messagebox.showinfo(title=ALL_TEXT["warn_copy_success_title"][self.current_lang_index], message=ALL_TEXT["warn_copy_success_text"][self.current_lang_index])
 

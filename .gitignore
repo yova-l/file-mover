@@ -6,6 +6,7 @@ __pycache__/
 # Any test heavy files
 *.mp4
 *.raw
+*.mxf
 
 # C extensions
 *.so

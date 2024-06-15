@@ -15,9 +15,9 @@ def create_params_grid(parent, lang_index, scale_factor) -> tk.Frame:
 
         # Some lightgrey styling would be great
         e1 = tk.Entry(my_grid, fg="grey", name="proxExtension")
-        e1.insert(0, '.jpg')
+        e1.insert(0, '.mp4')
         e2 = tk.Entry(my_grid, fg="grey", name="rawExtension")
-        e2.insert(0, '.dng')
+        e2.insert(0, '.mxf')
         e3 = tk.Entry(my_grid, fg="grey", name="folderName")
         e3.insert(0, 'MyRaws')
 
