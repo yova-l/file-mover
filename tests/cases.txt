@@ -1,2 +1,0 @@
-1) Happy case
-2) Tenes todos los jpgs, pero un raw no esta.
