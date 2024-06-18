@@ -23,5 +23,6 @@ ALL_TEXT = {
     "dump_file_chkb": ("Generar archivo dump con raws no encontrados?","Generate dump file containing all missing raws?"),
     "copy_chkb": ("Mantener copias raws originales?","Keep original raws copies?"),
     "linkedin_link": ("https://www.linkedin.com/in/giovannil-lombardi/?locale=es_ES","https://www.linkedin.com/in/giovannil-lombardi/"),
-    "linktree_link": "https://linktr.ee/GiovanniLDev"
+    "linktree_link": "https://linktr.ee/GiovanniLDev",
+    "help_menu": ("Ayuda", "Help")
 }

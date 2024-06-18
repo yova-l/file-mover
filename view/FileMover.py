@@ -53,15 +53,15 @@ class FileMoverGUI:
         self.label.pack(padx=int(10*scale_factor), pady=int(40*scale_factor))
 
         # App description
-        self.label = tk.Label(self.root, 
-                              text=ALL_TEXT["app_desc"][self.current_lang_index], 
-                              font=("Agave", int(11)),
-                              width=int(85*scale_factor),
-                              height=int(10*scale_factor),
-                              borderwidth=5,
-                              relief="ridge",
-                              wraplength=int(800*scale_factor))
-        self.label.pack(padx=int(10*scale_factor), pady=(int(10*scale_factor), int(30*scale_factor)))
+        # self.label = tk.Label(self.root, 
+        #                       text=ALL_TEXT["app_desc"][self.current_lang_index], 
+        #                       font=("Agave", int(11)),
+        #                       width=int(85*scale_factor),
+        #                       height=int(10*scale_factor),
+        #                       borderwidth=5,
+        #                       relief="ridge",
+        #                       wraplength=int(800*scale_factor))
+        # self.label.pack(padx=int(10*scale_factor), pady=(int(10*scale_factor), int(30*scale_factor)))
         
         # Paths Grid
         self.paths_grid = create_paths_grid(self.root, self.current_lang_index, scale_factor) # Already packed 
