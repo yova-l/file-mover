@@ -13,7 +13,7 @@ LANGUAGES = {"Español": 0, "English": 1}
 
 # Original Development Resolution
 DEV_RES_WIDTH = 3840
-DEV_WINDOW_WIDTH = 1280
+DEV_WINDOW_WIDTH = 1350
 DEV_WINDOW_HEIGHT = 1400
 
 class FileMoverGUI:
@@ -24,8 +24,9 @@ class FileMoverGUI:
 
         self.root = tk.Tk()
 
-        current_screen_width = self.root.winfo_screenwidth() 
-        #currenct_screen_height = self.root.winfo_screenheight()
+        current_screen_width = self.root.winfo_screenwidth()
+        current_screen_width = current_screen_width if current_screen_width <= DEV_RES_WIDTH else DEV_RES_WIDTH
+        
         scale_factor =  current_screen_width / DEV_RES_WIDTH * 1.25
 
         self.root.title(ALL_TEXT["main_window_title"]) 
