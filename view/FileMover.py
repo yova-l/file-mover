@@ -13,7 +13,7 @@ LANGUAGES = {"Español": 0, "English": 1}
 
 # Original Development Resolution
 DEV_RES_WIDTH = 3840
-DEV_WINDOW_WIDTH = 1350
+DEV_WINDOW_WIDTH = 1450
 DEV_WINDOW_HEIGHT = 1400
 
 class FileMoverGUI:
@@ -56,8 +56,8 @@ class FileMoverGUI:
         self.label = tk.Label(self.root, 
                               text=ALL_TEXT["app_desc"][self.current_lang_index], 
                               font=("Agave", int(11)),
-                              width=int(70*scale_factor),
-                              height=int(8*scale_factor),
+                              width=int(85*scale_factor),
+                              height=int(10*scale_factor),
                               borderwidth=5,
                               relief="ridge",
                               wraplength=int(800*scale_factor))
