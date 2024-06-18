@@ -8,15 +8,7 @@ FONT_BUTTONS = "Agave, Bold"
 BUTTONS_FONT_SIZE = 9
 
 def open_dialog_path(entry): 
-        # Specify the file types 
-        # ('text files', '*.txt')
-        #filetypes = (('All files', '*.*')) 
-
-        # Show the open file dialog by specifying path 
-        #(filetypes=filetypes, initialdir="./")
         path = fd.askdirectory() 
-
-        # Insert the text extracted from file in a textfield 
         entry.delete(0, tk.END)
         entry.insert(0, path)
 
@@ -38,13 +30,12 @@ def create_paths_grid(parent, lang_index, scale_factor) -> tk.Frame:
                       font=(FONT_LABEL, int(FONT_SIZE_LABEL*scale_factor)))
 
         e1 = tk.Entry(my_grid, fg="grey", name="proxPath", width=40)
-        e1.insert(0, "/home/giovanni/Desktop/github-repos/file-mover/tests/jpgs/") 
+        e1.insert(0, "/home/myUser/finalPhotos/") 
         e2 = tk.Entry(my_grid, fg="grey", name="rawsPath", width=40)
-        e2.insert(0, "/home/giovanni/Desktop/github-repos/file-mover/tests/raws/")
+        e2.insert(0, "/home/myUser/allRaws/")
         e3 = tk.Entry(my_grid, fg="grey", name="dumpPath", width=40)
-        e3.insert(0, "/home/giovanni/Desktop/github-repos/file-mover/tests/")
+        e3.insert(0, "/home/myUser/")
 
-        #command=
         btn1 = tk.Button(my_grid, text=button_text, font=(FONT_BUTTONS, BUTTONS_FONT_SIZE), command=lambda: open_dialog_path(e1))
         btn2 = tk.Button(my_grid, text=button_text, font=(FONT_BUTTONS, BUTTONS_FONT_SIZE), command=lambda: open_dialog_path(e2))
         btn3 = tk.Button(my_grid, text=button_text, font=(FONT_BUTTONS, BUTTONS_FONT_SIZE), command=lambda: open_dialog_path(e3))

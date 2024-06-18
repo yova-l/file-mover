@@ -15,18 +15,3 @@ class OptionMenuPers(tk.OptionMenu):
     
 def create_lang_selector(parent, tracer_func) -> OptionMenuPers:
     return OptionMenuPers(parent, tracer_func)
-    
-
-    
-# def create_lang_selector(parent, tracer_func) -> tk.OptionMenu:
-
-#     clicked = tk.StringVar(parent, name="language_val") 
-#     clicked.set(LANGUAGE_OPTIONS[0]) 
-#     clicked.trace_add("write", tracer_func)
-    
-#     # Create Dropdown menu 
-#     drop = tk.OptionMenu(parent, clicked , *LANGUAGE_OPTIONS) 
-
-    
-#     return drop
-    

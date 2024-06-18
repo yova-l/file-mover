@@ -1,16 +1,9 @@
 import os
-import shutil
 import filecmp
 #import platform
-
 #OS = platform.system()
 
-# TEST ZONE ==================================================================
 def copy_file_with_progress(guiUpdater, src, dst, filename, current_fumber, total_files):
-    # Example source and destination paths
-    # src = '/home/giovanni/Desktop/github-repos/file-mover/view/components/atest.mp4'  # Change this to your source file path
-    # dst = '/home/giovanni/Desktop/github-repos/file-mover/view/components/atestCOPY.mp4'  # Change this to your destination file path
-
     total_size = os.path.getsize(src)
     copied_size = 0
     
@@ -28,9 +21,6 @@ def copy_file_with_progress(guiUpdater, src, dst, filename, current_fumber, tota
    
                 guiUpdater.update_progress_bar(progress_value)
                 guiUpdater.update_current_file(filename, f"{current_fumber}/{total_files}")
-
-
-# END TEST ZONE ==============================================================
 
 class FileMover():
     def __init__(self):
@@ -58,12 +48,10 @@ class FileMover():
 
     def _dumpNotFounded(self):
         if len(self._notFounded) == 0 or not self._wantsDump: return
-
         with open(f"{self._dumpPath}dump.txt", "w") as f:
             for path in self._notFounded:
                 # Writing data to a file
                 f.write(f"Not founded: {os.path.abspath(path)}\n")
- 
         self._notFounded = []
 
     def _getJpgsNames(self, path: str) -> set:
@@ -112,13 +100,10 @@ class FileMover():
 
     def _getDestinationRawPath(self, oriRawPath, finalDirectoryPath):
         fileName = ""
-
         for i in range(len(oriRawPath) - 1, -1, -1):
             c = oriRawPath[i]
             if c == "/" or c == "\\": break
             fileName += c
-
-        # WHAT IF WE ARE ON WIDNOWS?? Check the above OS variable might be a solution, test it after
         return finalDirectoryPath + "/" + fileName[::-1]
             
     def moveRaws(self, guiUpdater):
@@ -141,14 +126,12 @@ class FileMover():
             if not os.path.exists(originRawImgPath): # Is the raw in the expected folder?
                 self._notFounded.append(originRawImgPath)
                 continue
-
             
             destinationRawImgPath = self._getDestinationRawPath(originRawImgPath, finalPath)
-            if os.path.exists(destinationRawImgPath) and filecmp.cmp(originRawImgPath, destinationRawImgPath): # OPCION ANTES SE INTERRUMPIO LA COPIA, si filecmp son != entonces copia de vuelta
+            if os.path.exists(destinationRawImgPath) and filecmp.cmp(originRawImgPath, destinationRawImgPath):
                 continue # The file is already in the destination folder
             
             # If we are here, the file is not in the destination folder or the copy was interrupted
-            #shutil.copy2(originRawImgPath, finalPath)
             copy_file_with_progress(guiUpdater, originRawImgPath, destinationRawImgPath, originRawName, i+1, len(originRawsPathList))
             safe_counter = 0
             succesfull_copy = filecmp.cmp(originRawImgPath, destinationRawImgPath)
