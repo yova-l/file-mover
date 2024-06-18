@@ -27,7 +27,7 @@ class FileMoverGUI:
         current_screen_width = self.root.winfo_screenwidth()
         current_screen_width = current_screen_width if current_screen_width <= DEV_RES_WIDTH else DEV_RES_WIDTH
         
-        scale_factor =  current_screen_width / DEV_RES_WIDTH * 1.25
+        scale_factor =  current_screen_width / DEV_RES_WIDTH * 1.15
 
         self.root.title(ALL_TEXT["main_window_title"]) 
 
@@ -49,8 +49,8 @@ class FileMoverGUI:
         # Application Title
         self.label = tk.Label(self.root, 
                               text=ALL_TEXT["title"][self.current_lang_index],
-                              font=("Px ToshibaLCD 8x16", int(45*scale_factor)))
-        self.label.pack(padx=int(10*scale_factor), pady=int(50*scale_factor))
+                              font=("Px ToshibaLCD 8x16", int(40*scale_factor)))
+        self.label.pack(padx=int(10*scale_factor), pady=int(40*scale_factor))
 
         # App description
         self.label = tk.Label(self.root, 
