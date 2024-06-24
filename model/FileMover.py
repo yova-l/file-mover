@@ -1,7 +1,5 @@
 import os
 import filecmp
-#import platform
-#OS = platform.system()
 
 def copy_file_with_progress(guiUpdater, src, dst, filename, current_fumber, total_files):
     total_size = os.path.getsize(src)
